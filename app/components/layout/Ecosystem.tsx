@@ -19,6 +19,7 @@ export default function Ecosystem() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [screenSize, setScreenSize] = useState<'md' | 'lg' | 'xl'>('xl');
   const [isHovering, setIsHovering] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const total = ecosystemCards.length;
 
@@ -66,13 +67,21 @@ export default function Ecosystem() {
   };
 
   const next = () => {
-    setDirection(1);
-    setStart((s) => Math.min(s + 1, getMaxStart()));
+    if (start < getMaxStart() && !isTransitioning) {
+      setIsTransitioning(true);
+      setDirection(1);
+      setStart((s) => Math.min(s + 1, getMaxStart()));
+      setTimeout(() => setIsTransitioning(false), 300);
+    }
   };
 
   const prev = () => {
-    setDirection(-1);
-    setStart((s) => Math.max(s - 1, 0));
+    if (start > 0 && !isTransitioning) {
+      setIsTransitioning(true);
+      setDirection(-1);
+      setStart((s) => Math.max(s - 1, 0));
+      setTimeout(() => setIsTransitioning(false), 300);
+    }
   };
 
   // Fixed Hotstar-style animations with proper typing
@@ -89,10 +98,10 @@ export default function Ecosystem() {
 
   const cardVariants: Variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 100 : -100,
+      x: direction > 0 ? 50 : -50,
       opacity: 0,
-      scale: 0.8,
-      filter: "blur(8px)",
+      scale: 0.95,
+      filter: "blur(4px)",
     }),
     center: {
       x: 0,
@@ -102,46 +111,46 @@ export default function Ecosystem() {
       transition: {
         x: { 
           type: "spring", 
-          stiffness: 300, 
-          damping: 30,
-          duration: 0.5 
+          stiffness: 500, 
+          damping: 40,
+          duration: 0.25
         },
         opacity: { 
-          duration: 0.4,
+          duration: 0.2,
           ease: "easeOut"
         },
         scale: { 
-          duration: 0.4,
+          duration: 0.2,
           ease: "easeOut"
         },
         filter: { 
-          duration: 0.4,
+          duration: 0.2,
           ease: "easeOut"
         },
       },
     },
     exit: (direction: number) => ({
-      x: direction > 0 ? -100 : 100,
+      x: direction > 0 ? -50 : 50,
       opacity: 0,
-      scale: 0.8,
-      filter: "blur(8px)",
+      scale: 0.95,
+      filter: "blur(4px)",
       transition: {
         x: { 
           type: "spring", 
-          stiffness: 300, 
-          damping: 30,
-          duration: 0.4 
+          stiffness: 500, 
+          damping: 40,
+          duration: 0.2
         },
         opacity: { 
-          duration: 0.3,
+          duration: 0.15,
           ease: "easeOut"
         },
         scale: { 
-          duration: 0.3,
+          duration: 0.15,
           ease: "easeOut"
         },
         filter: { 
-          duration: 0.3,
+          duration: 0.15,
           ease: "easeOut"
         },
       },
@@ -174,11 +183,11 @@ export default function Ecosystem() {
         >
           <motion.button
             onClick={prev}
-            disabled={start === 0}
-            whileHover={start !== 0 ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
-            whileTap={start !== 0 ? { scale: 0.95 } : {}}
-            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
-              start === 0
+            disabled={start === 0 || isTransitioning}
+            whileHover={start !== 0 && !isTransitioning ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
+            whileTap={start !== 0 && !isTransitioning ? { scale: 0.95 } : {}}
+            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
+              start === 0 || isTransitioning
                 ? "border-gray-300 text-gray-300 cursor-not-allowed"
                 : "border-[#B08D57] text-[#B08D57] hover:shadow-lg"
             }`}
@@ -188,11 +197,11 @@ export default function Ecosystem() {
 
           <motion.button
             onClick={next}
-            disabled={start >= getMaxStart()}
-            whileHover={start < getMaxStart() ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
-            whileTap={start < getMaxStart() ? { scale: 0.95 } : {}}
-            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
-              start >= getMaxStart()
+            disabled={start >= getMaxStart() || isTransitioning}
+            whileHover={start < getMaxStart() && !isTransitioning ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
+            whileTap={start < getMaxStart() && !isTransitioning ? { scale: 0.95 } : {}}
+            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
+              start >= getMaxStart() || isTransitioning
                 ? "border-gray-300 text-gray-300 cursor-not-allowed"
                 : "border-[#B08D57] text-[#B08D57] hover:shadow-lg"
             }`}
@@ -222,7 +231,7 @@ export default function Ecosystem() {
             initial="hidden"
             animate="visible"
           >
-            <AnimatePresence mode="popLayout" initial={false} custom={direction}>
+            <AnimatePresence mode="popLayout" initial={false}>
               {getVisible(visibleMd).map((item, index) => (
                 <motion.div
                   key={`${item.id}-${start}-${index}`}
@@ -249,7 +258,7 @@ export default function Ecosystem() {
             initial="hidden"
             animate="visible"
           >
-            <AnimatePresence mode="popLayout" initial={false} custom={direction}>
+            <AnimatePresence mode="popLayout" initial={false}>
               {getVisible(visibleLg).map((item, index) => (
                 <motion.div
                   key={`${item.id}-${start}-${index}`}
@@ -276,7 +285,7 @@ export default function Ecosystem() {
             initial="hidden"
             animate="visible"
           >
-            <AnimatePresence mode="popLayout" initial={false} custom={direction}>
+            <AnimatePresence mode="popLayout" initial={false}>
               {getVisible(visibleXl).map((item, index) => (
                 <motion.div
                   key={`${item.id}-${start}-${index}`}
@@ -309,7 +318,7 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       whileHover={{ 
         y: -8,
         scale: 1.02,
-        transition: { duration: 0.2 }
+        transition: { duration: 0.15 }
       }}
       className="bg-white rounded-2xl shadow-md p-5 flex flex-col justify-between h-[340px] relative overflow-hidden group cursor-pointer"
     >
@@ -318,20 +327,20 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
         className="absolute inset-0 bg-gradient-to-t from-[#B08D57]/20 to-transparent pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: isCardHovered ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.15 }}
       />
 
       {/* Icon with animation */}
       <motion.div
         className="w-full h-[120px] rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#FF8A6A] flex items-center justify-center text-white text-3xl font-bold relative overflow-hidden"
         whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        transition={{ type: "spring", stiffness: 500, damping: 30 }}
       >
         <motion.span
           animate={{ 
-            scale: isCardHovered ? [1, 1.2, 1] : 1,
+            scale: isCardHovered ? [1, 1.1, 1] : 1,
           }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.3 }}
         >
           MT
         </motion.span>
@@ -341,7 +350,7 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
           initial={{ x: "-100%" }}
           animate={{ x: isCardHovered ? "100%" : "-100%" }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         />
       </motion.div>
 
@@ -349,13 +358,13 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       <motion.div 
         className="mt-4 text-center min-h-[96px]"
         animate={{ y: isCardHovered ? -2 : 0 }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.15 }}
       >
         <h3 className="text-base font-semibold text-black">{item.title}</h3>
         <motion.p 
           className="text-sm text-black/60 mt-2 line-clamp-5"
-          animate={{ scale: isCardHovered ? 1.02 : 1 }}
-          transition={{ duration: 0.2 }}
+          animate={{ scale: isCardHovered ? 1.01 : 1 }}
+          transition={{ duration: 0.15 }}
         >
           {item.desc}
         </motion.p>
@@ -365,15 +374,14 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       <motion.span 
         className="mt-4 text-sm text-[#B08D57] font-medium text-center relative inline-block"
         animate={{ 
-          x: isCardHovered ? 5 : 0,
-          color: isCardHovered ? "#B08D57" : "#B08D57"
+          x: isCardHovered ? 3 : 0,
         }}
-        transition={{ duration: 0.2 }}
+        transition={{ duration: 0.15 }}
       >
         Learn more 
         <motion.span
-          animate={{ x: isCardHovered ? 3 : 0 }}
-          transition={{ duration: 0.2 }}
+          animate={{ x: isCardHovered ? 2 : 0 }}
+          transition={{ duration: 0.15 }}
           className="inline-block ml-1"
         >
           →
@@ -384,9 +392,10 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       <motion.div
         className="absolute top-2 left-2 text-4xl font-bold text-[#B08D57]/10"
         animate={{ 
-          scale: isCardHovered ? 1.2 : 1,
-          opacity: isCardHovered ? 0.2 : 0.1
+          scale: isCardHovered ? 1.1 : 1,
+          opacity: isCardHovered ? 0.15 : 0.1
         }}
+        transition={{ duration: 0.15 }}
       >
         {String(index + 1).padStart(2, '0')}
       </motion.div>

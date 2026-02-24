@@ -14,8 +14,8 @@ export default function Standby() {
   const rightInView = useInView(rightImageRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="w-full bg-[#F7F5F0] py-12 md:py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-[#F7F5F0] py-4 md:py-8 overflow-hidden">
+      <div className="">
         {/* Header with animation */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -167,7 +167,7 @@ function ContentBlock({ title, index }: { title: string; index: number }) {
           animate={{ x: [0, 3, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", delay: index * 0.3 }}
         >
-          →
+          {">"}
         </motion.span>
       </motion.span>
       
