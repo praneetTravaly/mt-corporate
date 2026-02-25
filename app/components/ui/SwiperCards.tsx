@@ -90,7 +90,7 @@ export default function InfiniteStack() {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-semibold">{card.title}</h3>
+                  <h3 className="text-xl font-normal">{card.title}</h3>
                   <p className="text-sm text-black/60 mt-2">{card.desc}</p>
                 </div>
 

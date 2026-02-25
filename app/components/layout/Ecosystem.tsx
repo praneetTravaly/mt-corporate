@@ -166,7 +166,7 @@ export default function Ecosystem() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-black">
+          <h2 className="text-2xl md:text-3xl font-normal text-black">
             All of Travel, Covered
           </h2>
           <p className="text-sm md:text-base text-black/60">
@@ -360,7 +360,7 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
         animate={{ y: isCardHovered ? -2 : 0 }}
         transition={{ duration: 0.15 }}
       >
-        <h3 className="text-base font-semibold text-black">{item.title}</h3>
+        <h3 className="text-xl font-medium text-black">{item.title}</h3>
         <motion.p 
           className="text-sm text-black/60 mt-2 line-clamp-5"
           animate={{ scale: isCardHovered ? 1.01 : 1 }}

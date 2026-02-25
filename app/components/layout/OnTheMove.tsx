@@ -43,7 +43,7 @@ const OnTheMove = () => {
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-2xl md:text-3xl font-semibold text-black"
+            className="text-2xl md:text-3xl font-normal text-black"
           >
             For Those On The Move
           </motion.h2>
@@ -107,7 +107,7 @@ const OnTheMove = () => {
 
                 <motion.h3 
                   whileHover={{ color: "#B08D57" }}
-                  className="text-lg font-semibold text-black transition-colors duration-200"
+                  className="text-2xl font-normal text-black transition-colors duration-200"
                 >
                   {item.title}
                 </motion.h3>
@@ -184,7 +184,7 @@ const OnTheMove = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.15 }}
-                  className="text-xl md:text-5xl font-semibold text-black mb-6"
+                  className="text-2xl md:text-5xl font-normal text-black mb-6"
                 >
                   “Built to Empower Today’s Traveller”
                 </motion.h3>

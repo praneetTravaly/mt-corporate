@@ -20,7 +20,7 @@ const Credibility = () => {
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="text-2xl md:text-3xl font-semibold text-black"
+            className="text-2xl md:text-3xl font-normal text-black"
           >
             Credibility, On Record
           </motion.h2>

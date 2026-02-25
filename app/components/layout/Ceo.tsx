@@ -42,7 +42,7 @@ export default function Ceo() {
               initial={{ opacity: 0, x: -20 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="absolute -top-1 -left-4 lg:left-1 text-8xl text-[#B08D57] font-serif"
+              className="absolute -top-1 -left-4 lg:left-1 text-8xl text-[#B08D57]"
             >
               "
             </motion.div>
@@ -52,11 +52,11 @@ export default function Ceo() {
               initial={{ opacity: 0 }}
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-3xl md:text-5xl lg:text-5xl font-bold leading-relaxed text-gray-800 text-center px-8 md:px-12"
+              className="text-3xl md:text-5xl lg:text-5xl font-normal leading-relaxed text-gray-800 text-center px-8 md:px-12"
             >
               <span className="relative">
                 We didn't set out to build a product.{" "}
-                <span className="text-[#B08D57] font-medium">
+                <span className="text-[#B08D57] font-semibold">
                   We set out to build a system{" "}
                 </span>
                 that travel could rely on
@@ -68,7 +68,7 @@ export default function Ceo() {
               initial={{ opacity: 0, x: 20 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="absolute -bottom-11 md:-bottom-6 lg:-bottom-10 -right-4 text-8xl text-[#B08D57] font-serif"
+              className="absolute -bottom-11 md:-bottom-6 lg:-bottom-10 -right-4 text-8xl text-[#B08D57]"
             >
               "
             </motion.div>

@@ -19,7 +19,7 @@ const Success = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-center text-2xl md:text-4xl font-semibold text-[#B08D57] mb-12 relative"
+          className="text-center text-2xl md:text-4xl font-normal text-[#B08D57] mb-12 relative"
         >
           4 simple steps to success
           <motion.div
@@ -88,7 +88,7 @@ const Success = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.1, ease: "easeOut" }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-start gap-4 cursor-pointer"
+              className="flex items-center gap-4 cursor-pointer"
             >
               <motion.span 
                 whileHover={{ scale: 1.2, color: "#B08D57" }}
@@ -101,7 +101,7 @@ const Success = () => {
                 <motion.h3 
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
-                  className="text-base font-semibold text-black"
+                  className="text-lg font-normal text-black"
                 >
                   {step.title}
                 </motion.h3>
@@ -157,7 +157,7 @@ const StepCard = ({
           <motion.h3 
             whileHover={{ color: "#B08D57" }}
             transition={{ duration: 0.2 }}
-            className="text-sm lg:text-base xl:text-lg font-semibold text-black mb-0.5 lg:mb-1"
+            className="text-sm lg:text-xl font-normal text-black mb-0.5 lg:mb-1"
           >
             {step.title}
           </motion.h3>

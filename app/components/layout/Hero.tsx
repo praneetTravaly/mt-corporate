@@ -116,7 +116,7 @@ const Hero: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-                  className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#1A1A1A] leading-[1.1] mb-6 md:mb-8"
+                  className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#1A1A1A] leading-[1.1] mb-6 md:mb-8"
                 >
                   MyTravaly is where travel becomes infrastructure.
                 </motion.h1>
@@ -124,7 +124,7 @@ const Hero: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
-                  className="text-lg md:text-xl lg:text-2xl xl:text-3xl text-[#5C5449] leading-relaxed max-w-3xl mx-auto"
+                  className="text-sm md:text-lg lg:text-xl text-[#5C5449] leading-relaxed max-w-3xl mx-auto"
                 >
                   A connected platform enabling travellers, hospitality partners, and
                   businesses to operate, scale, and grow across markets.

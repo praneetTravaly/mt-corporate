@@ -14,7 +14,7 @@ const ForTheHosts = () => {
           transition={{ duration: 0.5 }}
           className="mb-8 md:mb-10 text-left"
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-black">
+          <h2 className="text-2xl md:text-3xl font-normal text-black">
             For The hosts
           </h2>
           <p className="text-sm md:text-base text-black/60">
@@ -35,7 +35,7 @@ const ForTheHosts = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-3xl md:text-5xl font-semibold text-black mb-4"
+          className="text-3xl md:text-5xl font-normal text-black mb-4"
         >
           Get <span className="text-[#B08D57] italic font-semibold">Found</span>.{" "}
           Get{" "}

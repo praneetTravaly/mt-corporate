@@ -24,7 +24,7 @@ export default function Standby() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-8 md:mb-12 p-4 md:px-20"
         >
-          <h2 className="text-2xl md:text-3xl font-semibold text-black">
+          <h2 className="text-2xl md:text-3xl font-normal text-black">
             The Stays We Stand By
           </h2>
           <p className="text-sm md:text-base text-black/60">Featured hotels</p>
@@ -141,7 +141,7 @@ function ContentBlock({ title, index }: { title: string; index: number }) {
       whileHover={{ x: 5 }}
       className="group cursor-pointer"
     >
-      <h3 className="text-base md:text-lg font-semibold text-black flex items-center">
+      <h3 className="text-base md:text-xl font-normal text-black flex items-center">
         {title}
         {/* Small indicator dot */}
         <motion.span 
@@ -234,7 +234,7 @@ function MobileBlock({
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        <h3 className="text-base font-semibold text-black">{title}</h3>
+        <h3 className="text-lg font-normal text-black">{title}</h3>
         <p className="text-sm text-black/60 mt-2 line-clamp-4">
           Our premium partners represent a carefully selected group of hotels
           recognised for strong operational practices, consistent service
