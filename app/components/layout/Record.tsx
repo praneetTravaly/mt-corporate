@@ -48,7 +48,7 @@ const Record = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full bg-[#F7F5F0] py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] py-8 md:py-12 overflow-hidden">
       <div className="max-w-8xl mx-auto md:px-20">
         {/* Header */}
         <motion.div

@@ -18,7 +18,7 @@ const Hero: React.FC = () => {
 
   return (
     <div className="bg-[#F7F5F0] relative px-4 md:px-8 lg:px-12 pt-10 md:pt-14 lg:min-h-screen">
-      <div className="max-w-[1400px] mx-auto relative h-full">
+      <div className="max-w-8xl mx-auto relative h-full">
         {/* Floating Navigation - Half inside, half outside */}
         <motion.nav
           initial={{ y: -100, opacity: 0 }}

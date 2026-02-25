@@ -2,33 +2,51 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const cards = [
   {
-    title: "MyTravaly",
+    id: 1,
+    slug: "mt-india",
+    title: "MT India",
     desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
   },
   {
-    title: "Partner Network",
-    desc: "Tools and infrastructure for hotels and partners to manage distribution and growth.",
+    id: 2,
+    slug: "hbc",
+    title: "HBC",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
   },
   {
-    title: "Payments",
-    desc: "Seamless cross-border payments for travel transactions.",
+    id: 3,
+    slug: "stayconfirm",
+    title: "Stayconfirm",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
   },
   {
-    title: "Data & Insights",
-    desc: "Analytics and intelligence for smarter travel decisions.",
+    id: 4,
+    slug: "swoovo",
+    title: "Swoovo",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
   },
   {
-    title: "Experiences",
-    desc: "Curated local experiences across destinations.",
+    id: 5,
+    slug: "unified-pms",
+    title: "Unified PMS",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 6,
+    slug: "mt-global",
+    title: "MT Global",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
   },
 ];
 
 export default function InfiniteStack() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const router = useRouter();
 
   const getCard = (offset: number) => {
     const i = (index + offset + cards.length) % cards.length;
@@ -85,7 +103,10 @@ export default function InfiniteStack() {
                 transition={{ type: "spring", stiffness: 220, damping: 30 }}
               >
                 {/* Card content */}
-                <div className="w-full h-[150px] rounded-xl bg-[#FF6B4A] flex items-center justify-center text-white text-4xl font-bold">
+                <div
+                  onClick={() => router.push(`/products/${card.slug}`)}
+                  className="w-full h-[150px] rounded-xl bg-[#FF6B4A] flex items-center justify-center text-white text-4xl font-bold cursor-pointer active:scale-[0.98] transition"
+                >
                   MT
                 </div>
 
@@ -94,7 +115,10 @@ export default function InfiniteStack() {
                   <p className="text-sm text-black/60 mt-2">{card.desc}</p>
                 </div>
 
-                <span className="text-sm text-[#B08D57] font-medium">
+                <span
+                  onClick={() => router.push(`/products/${card.slug}`)}
+                  className="text-sm text-[#B08D57] font-medium cursor-pointer"
+                >
                   Learn more →
                 </span>
               </motion.div>

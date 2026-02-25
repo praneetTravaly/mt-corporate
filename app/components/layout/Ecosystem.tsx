@@ -4,20 +4,51 @@ import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import SwiperCards from "../ui/SwiperCards";
+import { useRouter } from "next/navigation";
 
 const ecosystemCards = [
-  { id: 1, title: "MT India", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
-  { id: 2, title: "HBC", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
-  { id: 3, title: "Stayconfirm", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
-  { id: 4, title: "Swoovo", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
-  { id: 5, title: "Unified PMS", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
-  { id: 6, title: "MT Global", desc: "The core travel platform connecting travellers with stays, experiences, and services across markets." },
+  {
+    id: 1,
+    slug: "mt-india",
+    title: "MT India",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 2,
+    slug: "hbc",
+    title: "HBC",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 3,
+    slug: "stayconfirm",
+    title: "Stayconfirm",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 4,
+    slug: "swoovo",
+    title: "Swoovo",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 5,
+    slug: "unified-pms",
+    title: "Unified PMS",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
+  {
+    id: 6,
+    slug: "mt-global",
+    title: "MT Global",
+    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+  },
 ];
 
 export default function Ecosystem() {
   const [start, setStart] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
-  const [screenSize, setScreenSize] = useState<'md' | 'lg' | 'xl'>('xl');
+  const [screenSize, setScreenSize] = useState<"md" | "lg" | "xl">("xl");
   const [isHovering, setIsHovering] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -35,17 +66,17 @@ export default function Ecosystem() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1280) {
-        setScreenSize('xl');
+        setScreenSize("xl");
       } else if (window.innerWidth >= 1024) {
-        setScreenSize('lg');
+        setScreenSize("lg");
       } else {
-        setScreenSize('md');
+        setScreenSize("md");
       }
     };
-    
+
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const getVisible = (count: number) => {
@@ -55,11 +86,11 @@ export default function Ecosystem() {
 
   const getMaxStart = () => {
     switch (screenSize) {
-      case 'md':
+      case "md":
         return maxStartMd;
-      case 'lg':
+      case "lg":
         return maxStartLg;
-      case 'xl':
+      case "xl":
         return maxStartXl;
       default:
         return maxStartXl;
@@ -109,23 +140,23 @@ export default function Ecosystem() {
       scale: 1,
       filter: "blur(0px)",
       transition: {
-        x: { 
-          type: "spring", 
-          stiffness: 500, 
+        x: {
+          type: "spring",
+          stiffness: 500,
           damping: 40,
-          duration: 0.25
+          duration: 0.25,
         },
-        opacity: { 
+        opacity: {
           duration: 0.2,
-          ease: "easeOut"
+          ease: "easeOut",
         },
-        scale: { 
+        scale: {
           duration: 0.2,
-          ease: "easeOut"
+          ease: "easeOut",
         },
-        filter: { 
+        filter: {
           duration: 0.2,
-          ease: "easeOut"
+          ease: "easeOut",
         },
       },
     },
@@ -135,23 +166,23 @@ export default function Ecosystem() {
       scale: 0.95,
       filter: "blur(4px)",
       transition: {
-        x: { 
-          type: "spring", 
-          stiffness: 500, 
+        x: {
+          type: "spring",
+          stiffness: 500,
           damping: 40,
-          duration: 0.2
+          duration: 0.2,
         },
-        opacity: { 
+        opacity: {
           duration: 0.15,
-          ease: "easeOut"
+          ease: "easeOut",
         },
-        scale: { 
+        scale: {
           duration: 0.15,
-          ease: "easeOut"
+          ease: "easeOut",
         },
-        filter: { 
+        filter: {
           duration: 0.15,
-          ease: "easeOut"
+          ease: "easeOut",
         },
       },
     }),
@@ -175,7 +206,7 @@ export default function Ecosystem() {
         </motion.div>
 
         {/* Desktop arrows with Hotstar-style hover effects */}
-        <motion.div 
+        <motion.div
           className="hidden md:flex items-center gap-3"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -184,7 +215,11 @@ export default function Ecosystem() {
           <motion.button
             onClick={prev}
             disabled={start === 0 || isTransitioning}
-            whileHover={start !== 0 && !isTransitioning ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
+            whileHover={
+              start !== 0 && !isTransitioning
+                ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" }
+                : {}
+            }
             whileTap={start !== 0 && !isTransitioning ? { scale: 0.95 } : {}}
             className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
               start === 0 || isTransitioning
@@ -198,8 +233,14 @@ export default function Ecosystem() {
           <motion.button
             onClick={next}
             disabled={start >= getMaxStart() || isTransitioning}
-            whileHover={start < getMaxStart() && !isTransitioning ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" } : {}}
-            whileTap={start < getMaxStart() && !isTransitioning ? { scale: 0.95 } : {}}
+            whileHover={
+              start < getMaxStart() && !isTransitioning
+                ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" }
+                : {}
+            }
+            whileTap={
+              start < getMaxStart() && !isTransitioning ? { scale: 0.95 } : {}
+            }
             className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
               start >= getMaxStart() || isTransitioning
                 ? "border-gray-300 text-gray-300 cursor-not-allowed"
@@ -217,15 +258,14 @@ export default function Ecosystem() {
       </div>
 
       {/* Desktop Grid with Hotstar-style animations */}
-      <div 
+      <div
         className="hidden md:block relative"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-
         {/* md */}
         <div className="hidden md:block lg:hidden overflow-visible">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-4 gap-6"
             variants={containerVariants}
             initial="hidden"
@@ -252,7 +292,7 @@ export default function Ecosystem() {
 
         {/* lg */}
         <div className="hidden lg:block xl:hidden overflow-visible">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-5 gap-6"
             variants={containerVariants}
             initial="hidden"
@@ -279,7 +319,7 @@ export default function Ecosystem() {
 
         {/* xl */}
         <div className="hidden xl:block overflow-visible">
-          <motion.div 
+          <motion.div
             className="grid grid-cols-6 gap-6"
             variants={containerVariants}
             initial="hidden"
@@ -308,19 +348,28 @@ export default function Ecosystem() {
   );
 }
 
-function Card({ item, index, isHovering }: { item: { id: number; title: string; desc: string }; index: number; isHovering: boolean }) {
+function Card({
+  item,
+  index,
+  isHovering,
+}: {
+  item: { id: number; slug: string; title: string; desc: string };
+  index: number;
+  isHovering: boolean;
+}) {
+  const router = useRouter();
   const [isCardHovered, setIsCardHovered] = useState(false);
 
   return (
     <motion.div
       onHoverStart={() => setIsCardHovered(true)}
       onHoverEnd={() => setIsCardHovered(false)}
-      whileHover={{ 
+      whileHover={{
         y: -8,
         scale: 1.02,
-        transition: { duration: 0.15 }
+        transition: { duration: 0.15 },
       }}
-      className="bg-white rounded-2xl shadow-md p-5 flex flex-col justify-between h-[340px] relative overflow-hidden group cursor-pointer"
+      className="bg-white rounded-2xl shadow-md p-5 flex flex-col justify-between h-[450px] relative overflow-hidden group cursor-pointer"
     >
       {/* Hotstar-style hover overlay */}
       <motion.div
@@ -332,20 +381,18 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
 
       {/* Icon with animation */}
       <motion.div
-        className="w-full h-[120px] rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#FF8A6A] flex items-center justify-center text-white text-3xl font-bold relative overflow-hidden"
+        onClick={() => router.push(`/products/${item.slug}`)}
+        className="w-full rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#FF8A6A] flex items-center justify-center text-white text-3xl font-bold relative overflow-hidden cursor-pointer aspect-square"
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
       >
         <motion.span
-          animate={{ 
-            scale: isCardHovered ? [1, 1.1, 1] : 1,
-          }}
+          animate={{ scale: isCardHovered ? [1, 1.1, 1] : 1 }}
           transition={{ duration: 0.3 }}
         >
           MT
         </motion.span>
-        
-        {/* Shimmer effect */}
+
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
           initial={{ x: "-100%" }}
@@ -355,13 +402,13 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       </motion.div>
 
       {/* Content */}
-      <motion.div 
+      <motion.div
         className="mt-4 text-center min-h-[96px]"
         animate={{ y: isCardHovered ? -2 : 0 }}
         transition={{ duration: 0.15 }}
       >
         <h3 className="text-xl font-medium text-black">{item.title}</h3>
-        <motion.p 
+        <motion.p
           className="text-sm text-black/60 mt-2 line-clamp-5"
           animate={{ scale: isCardHovered ? 1.01 : 1 }}
           transition={{ duration: 0.15 }}
@@ -371,14 +418,13 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       </motion.div>
 
       {/* Learn more with animation */}
-      <motion.span 
-        className="mt-4 text-sm text-[#B08D57] font-medium text-center relative inline-block"
-        animate={{ 
-          x: isCardHovered ? 3 : 0,
-        }}
+      <motion.span
+        onClick={() => router.push(`/products/${item.slug}`)}
+        className="mt-4 text-sm text-[#B08D57] font-medium text-center relative inline-block cursor-pointer"
+        animate={{ x: isCardHovered ? 3 : 0 }}
         transition={{ duration: 0.15 }}
       >
-        Learn more 
+        Learn more
         <motion.span
           animate={{ x: isCardHovered ? 2 : 0 }}
           transition={{ duration: 0.15 }}
@@ -391,13 +437,13 @@ function Card({ item, index, isHovering }: { item: { id: number; title: string; 
       {/* Index number (Hotstar style) */}
       <motion.div
         className="absolute top-2 left-2 text-4xl font-bold text-[#B08D57]/10"
-        animate={{ 
+        animate={{
           scale: isCardHovered ? 1.1 : 1,
-          opacity: isCardHovered ? 0.15 : 0.1
+          opacity: isCardHovered ? 0.15 : 0.1,
         }}
         transition={{ duration: 0.15 }}
       >
-        {String(index + 1).padStart(2, '0')}
+        {String(index + 1).padStart(2, "0")}
       </motion.div>
     </motion.div>
   );
