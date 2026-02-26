@@ -1,9 +1,10 @@
 // app/products/[slug]/page.tsx
-import { notFound } from 'next/navigation';
-import { PRODUCTS } from '@/app/constants/products';
-import ProductHero from './components/layout/ProductHero';
-import OtherBusinesses from './components/layout/OtherBusinesses';
-import Footer from '@/app/components/layout/Footer';
+import { notFound } from "next/navigation";
+import { PRODUCTS } from "@/app/constants/products";
+import ProductHero from "./components/layout/ProductHero";
+import OtherBusinesses from "./components/layout/OtherBusinesses";
+import Footer from "@/app/components/layout/Footer";
+import { Navbar } from "./components/layout/Navbar";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>; // ✅ params is a Promise
@@ -11,7 +12,7 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params; // ✅ Await the params Promise
-  const product = PRODUCTS.find(p => p.slug === slug);
+  const product = PRODUCTS.find((p) => p.slug === slug);
 
   if (!product) {
     notFound();
@@ -19,6 +20,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main>
+      <Navbar product={product}/>
       <ProductHero product={product} />
       <OtherBusinesses currentProductSlug={product.slug} />
       <Footer />

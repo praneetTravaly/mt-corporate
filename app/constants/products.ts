@@ -25,7 +25,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#FF6B5B",
     heroTitle: "Built for booking travel",
     heroSubtitle: "About the platform",
-    heroDescription: "Mytravely is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "Mytravely is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://mytravaly.com",
     features: ["Verified Properties", "Best Price Guarantee", "24/7 Support", "Easy Cancellation"]
   },
@@ -38,7 +38,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#4A90E2",
     heroTitle: "Hospitality Business Core",
     heroSubtitle: "About the platform",
-    heroDescription: "HBC is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "HBC is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://hbc.com",
     features: ["Central Management", "Revenue Analytics", "Channel Management", "Operations Hub"]
   },
@@ -51,7 +51,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#50C878",
     heroTitle: "Confirm stays with confidence",
     heroSubtitle: "About the platform",
-    heroDescription: "Stayconfirm is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "Stayconfirm is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://stayconfirm.com",
     features: ["Instant Confirmation", "Real-time Updates", "Best Rates", "Secure Payments"]
   },
@@ -64,7 +64,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#9B59B6",
     heroTitle: "All of Travel, Covered",
     heroSubtitle: "Our ecosystem",
-    heroDescription: "Swoovo is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "Swoovo is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://swoovo.com",
     features: ["Unified Dashboard", "Experience Booking", "Inventory Management", "Growth Analytics"]
   },
@@ -77,7 +77,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#E67E22",
     heroTitle: "One PMS for modern hospitality",
     heroSubtitle: "About the platform",
-    heroDescription: "Unified PMS is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "Unified PMS is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://unifiedpms.com",
     features: ["Front Desk Management", "Housekeeping Module", "Rate Management", "Detailed Reports"]
   },
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     logoBgColor: "#E74C3C",
     heroTitle: "Global travel infrastructure",
     heroSubtitle: "About the platform",
-    heroDescription: "MT Global is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent. From hotels and boutique properties to alternative accommodations, Mytravely connects travellers with verified options across cities and regions—bringing ease, trust, and consistency to the booking experience.",
+    heroDescription: "MT Global is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
     websiteUrl: "https://mtglobal.com",
     features: ["Global Distribution", "Cross-border Payments", "Multi-currency Support", "Enterprise API"]
   },

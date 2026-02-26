@@ -24,7 +24,7 @@ const Hero: React.FC = () => {
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className={`bg-white shadow-md px-6 md:px-8 py-4 md:py-5 absolute left-1/2 -translate-x-1/2 -top-6 md:-top-8 w-[85%] z-10 ${
+          className={`bg-white shadow-md px-6 md:px-8 py-4 md:py-5 fixed left-1/2 -translate-x-1/2 top-4 md:top-6 w-[85%] z-50 ${
             isMenuOpen ? 'rounded-4xl' : 'rounded-full'
           }`}
         >
