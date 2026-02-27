@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ForTheHosts = () => {
   return (
-    <section className="w-full bg-[#F7F5F0] py-16 md:py-24">
+    <section className="w-full bg-white py-4">
       <div className="max-w-8xl mx-auto px-4 md:px-20 text-center">
         {/* Top label */}
         <motion.div

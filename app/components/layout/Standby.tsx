@@ -14,7 +14,7 @@ export default function Standby() {
   const rightInView = useInView(rightImageRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="w-full bg-[#F7F5F0] py-4 md:py-8 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] py-4 overflow-hidden">
       <div className="">
         {/* Header with animation */}
         <motion.div
@@ -24,9 +24,9 @@ export default function Standby() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-8 md:mb-12 p-4 md:px-20"
         >
-          <h2 className="text-2xl md:text-3xl font-normal text-black">
+          <h4 className="text-2xl md:text-3xl font-normal text-black">
             The Stays We Stand By
-          </h2>
+          </h4>
           <p className="text-sm md:text-base text-black/60">Featured hotels</p>
           
           {/* Animated underline */}

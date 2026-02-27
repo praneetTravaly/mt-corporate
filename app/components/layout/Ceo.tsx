@@ -48,20 +48,20 @@ export default function Ceo() {
             </motion.div>
 
             {/* Quote text */}
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={isVisible ? { opacity: 1 } : {}}
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-3xl md:text-5xl lg:text-5xl font-normal leading-relaxed text-gray-800 text-center px-8 md:px-12"
             >
-              <span className="relative">
+              <h3 className="relative">
                 We didn't set out to build a product.{" "}
                 <span className="text-[#B08D57] font-semibold">
                   We set out to build a system{" "}
                 </span>
                 that travel could rely on
-              </span>
-            </motion.p>
+              </h3>
+            </motion.div>
 
             {/* Closing quote */}
             <motion.div

@@ -189,7 +189,7 @@ export default function Ecosystem() {
   };
 
   return (
-    <section className="py-16 w-full bg-[#F7F5F0] px-4 md:px-20 overflow-hidden">
+    <section className="pb-10 py-8 w-full bg-[#F7F5F0] px-4 md:px-20 overflow-hidden">
       {/* Header */}
       <div className="max-w-7xl mx-auto flex items-start justify-between gap-4 mb-8">
         <motion.div

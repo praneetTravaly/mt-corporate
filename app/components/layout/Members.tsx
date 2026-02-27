@@ -12,31 +12,19 @@ const members = [
     img: "/images/Ceo.png",
   },
   {
-    name: "team member 1",
+    name: "team member 2",
     role: "Ceo",
     email: "Ceo@mytravaly.com",
     img: "/images/Ceo.png",
   },
   {
-    name: "team member 1",
+    name: "team member 3",
     role: "Ceo",
     email: "Ceo@mytravaly.com",
     img: "/images/Ceo.png",
   },
   {
-    name: "team member 1",
-    role: "Ceo",
-    email: "Ceo@mytravaly.com",
-    img: "/images/Ceo.png",
-  },
-  {
-    name: "team member 1",
-    role: "Ceo",
-    email: "Ceo@mytravaly.com",
-    img: "/images/Ceo.png",
-  },
-  {
-    name: "team member 1",
+    name: "team member 4",
     role: "Ceo",
     email: "Ceo@mytravaly.com",
     img: "/images/Ceo.png",
@@ -47,7 +35,7 @@ const Members = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-[#F7F5F0] pt-4 md:pt-8 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] pt-4 overflow-hidden">
       {/* Rounded top container */}
       <div className="max-w-screen">
         <motion.div
@@ -55,7 +43,7 @@ const Members = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="bg-gradient-to-b from-[#E9E0D1] via-[#EFE7D8] to-[#F7F3EC] rounded-t-[48px] pt-10 pb-16 px-6 md:px-20"
+          className="bg-gradient-to-b from-[#E9E0D1] via-[#EFE7D8] to-[#F7F3EC] rounded-t-[48px] pt-10 pb-10 px-6 md:px-20"
         >
           {/* Header */}
           <motion.div 
@@ -94,8 +82,8 @@ const Members = () => {
             />
           </motion.div>
 
-          {/* Members Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          {/* Members Grid - changed to 4 items */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {members.map((m, i) => (
               <motion.div
                 key={i}

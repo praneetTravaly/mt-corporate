@@ -35,7 +35,7 @@ const TheNumbers = () => {
     setActiveIndex((prev) => (prev === 0 ? sliderData.length - 1 : prev - 1));
 
   return (
-    <section className="w-full bg-[#F7F5F0] py-12 md:py-20 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] py-8 overflow-hidden">
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <motion.div
@@ -43,9 +43,9 @@ const TheNumbers = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-8 md:mb-12 p-4 md:px-20"
+          className="mb-8 md:px-20"
         >
-          <motion.h2
+          <motion.h6
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -53,7 +53,7 @@ const TheNumbers = () => {
             className="text-2xl md:text-3xl font-normal text-black"
           >
             The Numbers
-          </motion.h2>
+          </motion.h6>
 
           <motion.p
             initial={{ x: -50, opacity: 0 }}

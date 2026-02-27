@@ -5,7 +5,7 @@ import { FaTiktok, FaTumblr, FaDiscord, FaDribbble, FaRedditAlien } from "react-
 
 const Credibility = () => {
   return (
-    <section className="w-full bg-[#F7F5F0] py-4 md:py-6 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] py-4 overflow-hidden">
       <div className="max-w-8xl mx-auto">
         {/* Header with reveal animation */}
         <motion.div
@@ -15,7 +15,7 @@ const Credibility = () => {
           transition={{ duration: 0.8 }}
           className="mb-4 md:mb-8 p-4 md:px-20"
         >
-          <motion.h2
+          <motion.h5
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -23,7 +23,7 @@ const Credibility = () => {
             className="text-2xl md:text-3xl font-normal text-black"
           >
             Credibility, On Record
-          </motion.h2>
+          </motion.h5>
           
           <motion.p
             initial={{ x: -50, opacity: 0 }}
