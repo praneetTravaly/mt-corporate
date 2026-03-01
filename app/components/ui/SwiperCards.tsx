@@ -104,7 +104,7 @@ export default function InfiniteStack() {
               >
                 {/* Card content */}
                 <div
-                  onClick={() => router.push(`/products/${card.slug}`)}
+                  onClick={() => window.open(`/products/${card.slug}`, "_blank")}
                   className="w-full h-[150px] rounded-xl bg-[#FF6B4A] flex items-center justify-center text-white text-4xl font-bold cursor-pointer active:scale-[0.98] transition"
                 >
                   MT
@@ -116,7 +116,7 @@ export default function InfiniteStack() {
                 </div>
 
                 <span
-                  onClick={() => router.push(`/products/${card.slug}`)}
+                  onClick={() => window.open(`/products/${card.slug}`, "_blank")}
                   className="text-sm text-[#B08D57] font-medium cursor-pointer"
                 >
                   Learn more →

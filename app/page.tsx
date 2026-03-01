@@ -17,19 +17,57 @@ export default function Home() {
   return (
     <div className="">
       <Hero />
-      <Ecosystem />
-      <Ceo />
-      <Standby />
-      <Credibility />
-      <TheNumbers />
-      <OnTheMove />
-      <ForTheHosts />
-      <Success />
-      <HealthCheck />
-      <Members />
-      <Record />
-      <GetInTouch />
-      <Footer />
+      <section id="brands">
+        <Ecosystem />
+      </section>
+
+      <section>
+        <Ceo />
+      </section>
+
+      <section>
+        <Standby />
+      </section>
+
+      <section>
+        <Credibility />
+      </section>
+
+      <section id="investors">
+        <TheNumbers />
+      </section>
+
+      <section id="travellers">
+        <OnTheMove />
+      </section>
+
+      <section id="hoteliers">
+        <ForTheHosts />
+      </section>
+
+      <section>
+        <Success />
+      </section>
+
+      <section>
+        <HealthCheck />
+      </section>
+
+      <section>
+        <Members />
+      </section>
+
+      <section id="newsroom">
+        <Record />
+      </section>
+
+      <section id="contact">
+        <GetInTouch />
+      </section>
+
+      <section>
+        <Footer />
+      </section>
     </div>
   );
 }

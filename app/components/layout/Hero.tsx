@@ -5,16 +5,43 @@ import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeNav, setActiveNav] = useState<string | null>(null);
 
+  // Map nav items to section IDs based on your page.tsx structure
   const navItems = [
-    'Brands',
-    'For Investors',
-    'For hoteliers',
-    'For Travellers',
-    'Newsroom',
-    'Contact Us',
-    'Careers'
+    { label: 'Brands', sectionId: 'brands' },
+    { label: 'For Investors', sectionId: 'investors' },
+    { label: 'For hoteliers', sectionId: 'hoteliers' },
+    { label: 'For Travellers', sectionId: 'travellers' },
+    { label: 'Newsroom', sectionId: 'newsroom' },
+    { label: 'Contact Us', sectionId: 'contact' },
+    { label: 'Careers', sectionId: 'careers' }
   ];
+
+  // Smooth scroll function with 100px offset
+  const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Set active nav item
+    setActiveNav(sectionId);
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const offset = 100; // Stop 100px above the section
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      
+      window.scrollTo({
+        top: sectionTop - offset,
+        behavior: 'smooth'
+      });
+      
+      // Remove highlight after scrolling completes (approximate duration)
+      setTimeout(() => {
+        setActiveNav(null);
+      }, 1000); // Match this with your scroll duration
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <div className="bg-[#F7F5F0] relative px-4 md:px-8 lg:px-12 pt-10 md:pt-14 lg:min-h-screen">
@@ -29,11 +56,16 @@ const Hero: React.FC = () => {
           }`}
         >
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo - scrolls to top when clicked */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="flex items-center"
+              className="flex items-center cursor-pointer"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveNav(null);
+                setIsMenuOpen(false);
+              }}
             >
               <div className="bg-[#FF6B5B] w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 flex items-center justify-center flex-shrink-0">
                 <span className="text-white font-bold text-lg md:text-xl lg:text-2xl">MT</span>
@@ -45,14 +77,29 @@ const Hero: React.FC = () => {
               {navItems.map((item, index) => (
                 <motion.a
                   key={index}
-                  href="#"
+                  href={`#${item.sectionId}`}
+                  onClick={(e) => scrollToSection(item.sectionId, e)}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.03, ease: "easeOut" }}
-                  whileHover={{ scale: 1.05, color: '#FF6B5B', transition: { duration: 0.15 } }}
-                  className="text-[#B08D57] hover:text-[#FF6B5B] transition-colors duration-150 text-xs md:text-sm xl:text-lg font-medium whitespace-nowrap"
+                  whileHover={{ scale: 1.05 }}
+                  className={`transition-all duration-150 text-xs md:text-sm xl:text-lg font-medium whitespace-nowrap relative ${
+                    activeNav === item.sectionId 
+                      ? 'text-[#FF6B5B]' 
+                      : 'text-[#B08D57] hover:text-[#FF6B5B]'
+                  }`}
                 >
-                  {item}
+                  {item.label}
+                  {/* Active indicator - underline */}
+                  {activeNav === item.sectionId && (
+                    <motion.div
+                      layoutId="activeNav"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#FF6B5B]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  )}
                 </motion.a>
               ))}
             </div>
@@ -84,15 +131,22 @@ const Hero: React.FC = () => {
                 {navItems.map((item, index) => (
                   <motion.a
                     key={index}
-                    href="#"
+                    href={`#${item.sectionId}`}
+                    onClick={(e) => scrollToSection(item.sectionId, e)}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.2, delay: index * 0.02, ease: "easeOut" }}
-                    className="text-[#B08D57] hover:text-[#FF6B5B] transition-colors duration-150 text-sm font-medium py-1.5"
-                    onClick={() => setIsMenuOpen(false)}
+                    className={`transition-all duration-150 text-sm font-medium py-1.5 relative ${
+                      activeNav === item.sectionId
+                        ? 'text-[#FF6B5B]'
+                        : 'text-[#B08D57] hover:text-[#FF6B5B]'
+                    }`}
                     whileHover={{ x: 5, transition: { duration: 0.15 } }}
                   >
-                    {item}
+                    {item.label}
+                    {activeNav === item.sectionId && (
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4 bg-[#FF6B5B] rounded-full" />
+                    )}
                   </motion.a>
                 ))}
               </div>

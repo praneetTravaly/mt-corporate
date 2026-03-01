@@ -381,7 +381,7 @@ function Card({
 
       {/* Icon with animation */}
       <motion.div
-        onClick={() => router.push(`/products/${item.slug}`)}
+        onClick={() => window.open(`/products/${item.slug}`, "_blank")}
         className="w-full rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#FF8A6A] flex items-center justify-center text-white text-3xl font-bold relative overflow-hidden cursor-pointer aspect-square"
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -419,7 +419,7 @@ function Card({
 
       {/* Learn more with animation */}
       <motion.span
-        onClick={() => router.push(`/products/${item.slug}`)}
+        onClick={() => window.open(`/products/${item.slug}`, "_blank")}
         className="mt-4 text-sm text-[#B08D57] font-medium text-center relative inline-block cursor-pointer"
         animate={{ x: isCardHovered ? 3 : 0 }}
         transition={{ duration: 0.15 }}
