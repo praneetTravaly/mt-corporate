@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
 const sliderData = [
@@ -29,13 +30,23 @@ const sliderData = [
 
 const TheNumbers = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileActiveIndex, setMobileActiveIndex] = useState(0);
 
   const next = () => setActiveIndex((prev) => (prev + 1) % sliderData.length);
   const prev = () =>
     setActiveIndex((prev) => (prev === 0 ? sliderData.length - 1 : prev - 1));
 
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      next();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []); // Empty dependency array to run once on mount
+
   return (
-    <section className="w-full bg-[#F7F5F0] py-8 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] py-8 overflow-hidden max-md:p-5">
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <motion.div
@@ -86,7 +97,6 @@ const TheNumbers = () => {
             />
           </motion.div>
         </motion.div>
-
         {/* FY25 Card (exactly like Figma) */}
         <div className="px-4 md:px-20">
           <motion.div
@@ -123,7 +133,11 @@ const TheNumbers = () => {
               <div className="flex flex-col gap-2 sm:gap-3 w-full sm:w-[65%] md:w-[60%]">
                 {/* Revenue - Longest width */}
                 <motion.div
-                  whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                  whileHover={{
+                    scale: 1.02,
+                    x: 5,
+                    transition: { duration: 0.2 },
+                  }}
                   className="relative bg-[#F7F5F0] rounded-r-full h-12 sm:h-14 md:h-16 lg:h-20 w-full shadow-md md:shadow-lg cursor-pointer transition-shadow duration-300"
                 >
                   <div className="absolute left-0 top-0 h-full w-8 sm:w-9 md:w-10 bg-black/10 flex items-center justify-center">
@@ -138,7 +152,11 @@ const TheNumbers = () => {
 
                 {/* GBV - Medium width */}
                 <motion.div
-                  whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                  whileHover={{
+                    scale: 1.02,
+                    x: 5,
+                    transition: { duration: 0.2 },
+                  }}
                   className="relative bg-[#F7F5F0] rounded-r-full h-12 sm:h-14 md:h-16 lg:h-20 w-[85%] sm:w-[88%] md:w-[84%] lg:w-[80%] shadow-md md:shadow-lg cursor-pointer transition-shadow duration-300"
                 >
                   <div className="absolute left-0 top-0 h-full w-8 sm:w-9 md:w-10 bg-black/10 flex items-center justify-center">
@@ -153,7 +171,11 @@ const TheNumbers = () => {
 
                 {/* EBITDA - Shortest width */}
                 <motion.div
-                  whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                  whileHover={{
+                    scale: 1.02,
+                    x: 5,
+                    transition: { duration: 0.2 },
+                  }}
                   className="relative bg-[#F7F5F0] rounded-r-full h-12 sm:h-14 md:h-16 lg:h-20 w-[70%] sm:w-[72%] md:w-[66%] lg:w-[60%] shadow-md md:shadow-lg cursor-pointer transition-shadow duration-300"
                 >
                   <div className="absolute left-0 top-0 h-full w-8 sm:w-9 md:w-10 bg-black/10 flex items-center justify-center">
@@ -169,7 +191,6 @@ const TheNumbers = () => {
             </div>
           </motion.div>
         </div>
-
         {/* Desktop Slider */}
         <div className="hidden md:block px-4 md:px-20">
           <div className="relative max-w-8xl mx-auto w-full flex items-center justify-between">
@@ -216,7 +237,11 @@ const TheNumbers = () => {
                       <div className="flex flex-col gap-3 w-full">
                         {/* Revenue pill - Same hover as FY25 cards */}
                         <motion.div
-                          whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                          whileHover={{
+                            scale: 1.02,
+                            x: 5,
+                            transition: { duration: 0.2 },
+                          }}
                           className="bg-[#F7F5F0] rounded-full shadow px-6 py-3 text-center cursor-pointer transition-shadow duration-300"
                         >
                           <p className="font-medium text-3xl">{item.revenue}</p>
@@ -225,7 +250,11 @@ const TheNumbers = () => {
 
                         {/* Avg Users pill - Same hover as FY25 cards */}
                         <motion.div
-                          whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                          whileHover={{
+                            scale: 1.02,
+                            x: 5,
+                            transition: { duration: 0.2 },
+                          }}
                           className="bg-[#F7F5F0] rounded-full shadow px-6 py-3 text-center cursor-pointer transition-shadow duration-300"
                         >
                           <p className="font-medium text-3xl">{item.users}</p>
@@ -254,10 +283,22 @@ const TheNumbers = () => {
           <Swiper
             spaceBetween={16}
             slidesPerView={1}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => {
+              // Get the real index (considering loop mode)
+              const realIndex = swiper.realIndex;
+              setMobileActiveIndex(realIndex);
+            }}
+            className="w-full"
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            loop={true}
           >
             {sliderData.map((item, i) => (
               <SwiperSlide key={i}>
+                {/* Your card content remains the same */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -279,18 +320,24 @@ const TheNumbers = () => {
                   </div>
 
                   <div className="flex flex-col gap-3 w-full">
-                    {/* Revenue pill - Same hover as desktop */}
                     <motion.div
-                      whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 5,
+                        transition: { duration: 0.2 },
+                      }}
                       className="bg-[#F7F5F0] rounded-full shadow px-6 py-3 text-center cursor-pointer transition-shadow duration-300"
                     >
                       <p className="font-medium">{item.revenue}</p>
                       <p className="text-xs text-black/60">Revenue</p>
                     </motion.div>
 
-                    {/* Avg Users pill - Same hover as desktop */}
                     <motion.div
-                      whileHover={{ scale: 1.02, x: 5, transition: { duration: 0.2 } }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 5,
+                        transition: { duration: 0.2 },
+                      }}
                       className="bg-[#F7F5F0] rounded-full shadow px-6 py-3 text-center cursor-pointer transition-shadow duration-300"
                     >
                       <p className="font-medium">{item.users}</p>
@@ -309,12 +356,12 @@ const TheNumbers = () => {
                 key={i}
                 initial={{ scale: 0.8 }}
                 animate={{
-                  scale: activeIndex === i ? 1.2 : 0.8,
-                  width: activeIndex === i ? 32 : 8,
+                  scale: mobileActiveIndex === i ? 1.2 : 0.8, // Changed from activeIndex to mobileActiveIndex
+                  width: mobileActiveIndex === i ? 32 : 8, // Changed from activeIndex to mobileActiveIndex
                 }}
                 transition={{ duration: 0.3 }}
                 className={`h-2 rounded-full transition-all ${
-                  activeIndex === i ? "bg-[#B08D57]" : "bg-black/20"
+                  mobileActiveIndex === i ? "bg-[#B08D57]" : "bg-black/20" // Changed from activeIndex to mobileActiveIndex
                 }`}
               />
             ))}

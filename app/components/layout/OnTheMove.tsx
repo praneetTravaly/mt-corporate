@@ -28,7 +28,7 @@ const features = [
 
 const OnTheMove = () => {
   return (
-    <section className="w-full bg-[#F7F5F0] md:py-4 overflow-hidden">
+    <section className="w-full bg-[#F7F5F0] md:py-4 overflow-hidden max-md:p-5">
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <motion.div
