@@ -14,9 +14,9 @@ export default async function ProductPage() {
     shortTitle: "SW",
     logoText: "SW",
     logoBgColor: "#9B59B6",
-    heroTitle: "All of Travel, Covered",
+    heroTitle: "Intelligent Supply. Optimized Margins.",
     heroSubtitle: "Our ecosystem",
-    heroDescription: "Swoovo is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
+    heroDescription: "Swoovo is a high-performance supply intelligence engine that aggregates, normalizes, and optimizes hotel inventory across global sources. Built for OTAs and enterprise travel platforms, it enhances rate competitiveness, improves conversion efficiency, and enables scalable expansion into new markets — without operational complexity.",
     websiteUrl: "https://mt-swoovo.onrender.com/",
     features: ["Unified Dashboard", "Experience Booking", "Inventory Management", "Growth Analytics"]
   }

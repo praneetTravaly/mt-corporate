@@ -14,9 +14,9 @@ export default async function ProductPage() {
     shortTitle: "UP",
     logoText: "UP",
     logoBgColor: "#E67E22",
-    heroTitle: "One PMS for modern hospitality",
+    heroTitle: "Operational Control, Without Complexity",
     heroSubtitle: "About the platform",
-    heroDescription: "Unified PMS is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
+    heroDescription: "A unified cloud-based PMS designed to streamline reservations, inventory management, staff coordination, and guest lifecycle management — across single properties and multi-unit portfolios. Automation reduces friction. Intelligence improves performance.",
     websiteUrl: "https://unifiedpms.com",
     features: ["Front Desk Management", "Housekeeping Module", "Rate Management", "Detailed Reports"]
   }

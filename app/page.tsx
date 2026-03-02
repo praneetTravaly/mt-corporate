@@ -1,3 +1,4 @@
+import Career from "./components/layout/Career";
 import Ceo from "./components/layout/Ceo";
 import Credibility from "./components/layout/Credebility";
 import Ecosystem from "./components/layout/Ecosystem";
@@ -49,12 +50,16 @@ export default function Home() {
         <Success />
       </section>
 
-      <section>
+      {/* <section>
         <HealthCheck />
-      </section>
+      </section> */}
 
       <section>
         <Members />
+      </section>
+
+      <section id="careers">
+        <Career />
       </section>
 
       <section id="newsroom">

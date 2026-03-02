@@ -50,9 +50,9 @@ export default function RedirectScreen({
         <h2 className="text-3xl font-medium text-gray-800">
           You’re being redirected
         </h2>
-        <p className="mt-2 text-[#B08D57] underline text-lg">
+        {/* <p className="mt-2 text-[#B08D57] underline text-lg">
           {url.replace("https://", "")}
-        </p>
+        </p> */}
       </div>
     </div>
   );

@@ -42,12 +42,12 @@ const ProductHero: React.FC<ProductHeroProps> = ({ product }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="max-w-4xl"
+                className="max-w-8xl"
               >
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-white mb-3 md:mb-4">
                   {product.heroTitle}
                 </h1>
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/80 leading-relaxed max-w-2xl mx-auto px-2">
+                <p className="text-xs sm:text-sm md:text-base text-white/80 leading-relaxed max-w-5xl mx-auto px-2">
                   {product.heroDescription}
                 </p>
               </motion.div>
@@ -124,16 +124,16 @@ const ProductHero: React.FC<ProductHeroProps> = ({ product }) => {
                     className="flex justify-center lg:justify-end relative px-10"
                   >
                     {/* iPhone Frame - Half visible from bottom */}
-                    <div className="relative w-[160px] sm:w-[160px] md:w-[180px] lg:w-[200px] transform translate-y-8 sm:translate-y-10 md:translate-y-12">
+                    <div className="relative w-[160px] sm:w-[180px] lg:w-[200px] transform translate-y-8 sm:translate-y-10 md:translate-y-12">
                       {/* iPhone Body - Only top half visible */}
-                      <div className="relative w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] bg-[#1A1A1A] rounded-t-[40px] sm:rounded-t-[48px] border-t-4 border-l-4 border-r-4 border-gray-700 shadow-2xl overflow-hidden">
+                      <div className="relative w-full h-[180px] md:h-[200px] lg:h-[220px] bg-[#1A1A1A] rounded-t-[40px] sm:rounded-t-[48px] border-t-4 border-l-4 border-r-4 border-gray-700 shadow-2xl overflow-hidden">
                         {/* Dynamic Island / Notch */}
                         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 sm:w-18 md:w-20 h-5 sm:h-6 bg-gray-800 rounded-b-xl z-20" />
 
                         {/* Screen */}
                         <div className="absolute inset-x-[4px] top-[4px] bottom-0 bg-white rounded-t-[32px] sm:rounded-t-[36px] md:rounded-t-[40px] overflow-hidden">
                           {/* Screen Content - QR Code */}
-                          <div className="w-full h-full flex flex-col items-center justify-start pt-4 sm:pt-6 md:pt-8 bg-gradient-to-b from-gray-50 to-gray-100">
+                          <div className="w-full h-full flex flex-col items-center justify-start pt-1 lg:pt-4 bg-gradient-to-b from-gray-50 to-gray-100">
                             {/* QR Code Placeholder */}
                             <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white border-2 border-dashed border-[#B08D57] rounded-lg sm:rounded-xl flex items-center justify-center shadow-inner mt-10">
                               <span className="text-[#B08D57] text-[10px] sm:text-xs font-medium">

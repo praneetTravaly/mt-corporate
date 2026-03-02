@@ -5,43 +5,50 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import SwiperCards from "../ui/SwiperCards";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ecosystemCards = [
   {
     id: 1,
     slug: "mt-india",
     title: "MT India",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "A global travel marketplace engineered for seamless discovery, secure payments, and intelligent booking experiences.",
+    logo: "images/Logo.png" // Update with actual path
   },
   {
     id: 2,
     slug: "hbc",
     title: "HBC",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "AI-driven revenue intelligence and business optimization platform for modern hospitality operators.",
+    logo: "images/Logo.png" // Update with actual path
   },
   {
     id: 3,
     slug: "stayconfirm",
     title: "Stayconfirm",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "Direct booking technology that transforms hotel websites into high-performance revenue channels.",
+    logo: "images/Logo.png" // Update with actual path
   },
   {
     id: 4,
     slug: "swoovo",
     title: "Swoovo",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "An intelligent supply aggregation engine powering OTAs and travel enterprises with scalable, margin-optimized inventory.",
+    logo: "images/SwoovoIcon.png" // Update with actual path
   },
   {
     id: 5,
     slug: "unified-pms",
     title: "Unified PMS",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "A cloud-native property management system built for operational precision and scalability.",
+    logo: "images/Logo.png" // Update with actual path
   },
   {
     id: 6,
     slug: "mt-global",
     title: "MT Global",
-    desc: "The core travel platform connecting travellers with stays, experiences, and services across markets.",
+    desc: "A monetization infrastructure empowering travel creators and agents to build independent revenue businesses.",
+    logo: "images/Logo.png" // Update with actual path
   },
 ];
 
@@ -353,7 +360,7 @@ function Card({
   index,
   isHovering,
 }: {
-  item: { id: number; slug: string; title: string; desc: string };
+  item: { id: number; slug: string; title: string; desc: string; logo: string };
   index: number;
   isHovering: boolean;
 }) {
@@ -379,22 +386,25 @@ function Card({
         transition={{ duration: 0.15 }}
       />
 
-      {/* Icon with animation */}
+      {/* Logo with animation */}
       <motion.div
         onClick={() => window.open(`/products/${item.slug}`, "_blank")}
-        className="w-full rounded-xl bg-gradient-to-br from-[#FF6B4A] to-[#FF8A6A] flex items-center justify-center text-white text-3xl font-bold relative overflow-hidden cursor-pointer aspect-square"
+        className="w-full rounded-xl bg-white flex items-center justify-center relative overflow-hidden cursor-pointer aspect-square border border-gray-100"
         whileHover={{ scale: 1.05 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
       >
-        <motion.span
-          animate={{ scale: isCardHovered ? [1, 1.1, 1] : 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          MT
-        </motion.span>
+        <div className="relative w-full h-full">
+          <Image
+            src={item.logo}
+            alt={`${item.title} logo`}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
 
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B08D57]/10 to-transparent"
           initial={{ x: "-100%" }}
           animate={{ x: isCardHovered ? "100%" : "-100%" }}
           transition={{ duration: 0.5, ease: "easeInOut" }}

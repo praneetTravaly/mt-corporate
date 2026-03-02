@@ -14,9 +14,9 @@ export default async function ProductPage() {
     shortTitle: "HBC",
     logoText: "HB",
     logoBgColor: "#4A90E2",
-    heroTitle: "Hospitality Business Core",
+    heroTitle: "Predict. Optimize. Lead.",
     heroSubtitle: "About the platform",
-    heroDescription: "HBC is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
+    heroDescription: "HBC leverages AI-driven forecasting, automated pricing intelligence, and performance analytics to empower hospitality leaders with real-time decision clarity. From demand prediction to operational efficiency, every insight is designed to increase profitability and strategic control.",
     websiteUrl: "https://hbc.mytravaly.com/",
     features: ["Central Management", "Revenue Analytics", "Channel Management", "Operations Hub"]
   }

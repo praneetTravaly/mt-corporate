@@ -35,7 +35,7 @@ const Members = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="w-full bg-[#F7F5F0] pt-4 overflow-hidden">
+    <section className="w-full bg-white pt-4 overflow-hidden">
       {/* Rounded top container */}
       <div className="max-w-screen">
         <motion.div
@@ -83,7 +83,7 @@ const Members = () => {
           </motion.div>
 
           {/* Members Grid - changed to 4 items */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             {members.map((m, i) => (
               <motion.div
                 key={i}

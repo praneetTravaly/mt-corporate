@@ -14,9 +14,9 @@ export default async function ProductPage() {
     shortTitle: "SC",
     logoText: "SC",
     logoBgColor: "#50C878",
-    heroTitle: "Confirm stays with confidence",
+    heroTitle: "Own the Relationship. Protect the Margin.",
     heroSubtitle: "About the platform",
-    heroDescription: "Stayconfirm is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
+    heroDescription: "StayConfirm empowers hotels to capture direct bookings through secure, real-time availability and multi-currency checkout. With automated settlements, intelligent refund management, and conversion-focused booking flows, hotels regain control of distribution and profitability.",
     websiteUrl: "https://stayconfirm.com",
     features: ["Instant Confirmation", "Real-time Updates", "Best Rates", "Secure Payments"]
   }

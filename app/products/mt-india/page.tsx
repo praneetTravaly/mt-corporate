@@ -14,9 +14,9 @@ export default async function ProductPage() {
     shortTitle: "MT",
     logoText: "MT",
     logoBgColor: "#FF6B5B",
-    heroTitle: "Built for booking travel",
+    heroTitle: "The Intelligence Layer Behind Modern Travel",
     heroSubtitle: "About the platform",
-    heroDescription: "Mytravely is a travel booking platform designed to make discovering and booking stays simple, reliable, and transparent.",
+    heroDescription: "Built for the globally mobile traveler, our marketplace integrates real-time availability, transparent pricing, secure multi-currency transactions, and instant confirmations into a frictionless digital journey. Designed not only for exploration — but for trust, speed, and scale.",
     websiteUrl: "https://www.mytravaly.in/",
     features: ["Verified Properties", "Best Price Guarantee", "24/7 Support", "Easy Cancellation"]
   }
