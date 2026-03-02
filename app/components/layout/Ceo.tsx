@@ -55,11 +55,11 @@ export default function Ceo() {
               className="text-3xl md:text-5xl lg:text-5xl font-normal leading-relaxed text-gray-800 text-center px-8 md:px-12"
             >
               <h3 className="relative">
-                We didn't set out to build a product.{" "}
+                We didn’t set out to build a product.{" "}
                 <span className="text-[#B08D57] font-semibold">
-                  We set out to build a system{" "}
+                  We built the infrastructure{" "}
                 </span>
-                that travel could rely on
+                travel could depend on
               </h3>
             </motion.div>
 
