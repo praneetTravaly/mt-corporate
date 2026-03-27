@@ -10,9 +10,11 @@ import Hero from "./components/layout/Hero";
 import Members from "./components/layout/Members";
 import OnTheMove from "./components/layout/OnTheMove";
 import Record from "./components/layout/Record";
+import ScaleAndMarket from "./components/layout/ScaleAndMarket";
 import Standby from "./components/layout/Standby";
 import Success from "./components/layout/Success";
 import TheNumbers from "./components/layout/TheNumbers";
+import TravelParticipant from "./components/layout/TravelParticipant";
 
 export default function Home() {
   return (
@@ -20,6 +22,10 @@ export default function Home() {
       <Hero />
       <section id="brands">
         <Ecosystem />
+      </section>
+
+      <section>
+        <ScaleAndMarket />
       </section>
 
       <section>
@@ -34,25 +40,29 @@ export default function Home() {
         <Credibility />
       </section>
 
-      <section id="investors">
+      {/* <section id="investors">
         <TheNumbers />
-      </section>
+      </section> */}
 
-      <section id="travellers">
+      {/* <section id="travellers">
         <OnTheMove />
-      </section>
+      </section> */}
 
-      <section id="hoteliers">
+      {/* <section id="hoteliers">
         <ForTheHosts />
       </section>
 
       <section>
         <Success />
-      </section>
+      </section> */}
 
       {/* <section>
         <HealthCheck />
       </section> */}
+
+      <section>
+        <TravelParticipant />
+      </section>
 
       <section>
         <Members />

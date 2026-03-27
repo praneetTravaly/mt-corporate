@@ -1,460 +1,233 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { motion, AnimatePresence, Variants } from "framer-motion";
-import SwiperCards from "../ui/SwiperCards";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const ecosystemCards = [
+// 1. Data Restructured exactly as requested into the 3 Pillars
+const ecosystemPillars = [
   {
-    id: 1,
-    slug: "mt-india",
-    title: "MT India",
-    desc: "A global travel marketplace engineered for seamless discovery, secure payments, and intelligent booking experiences.",
-    logo: "images/Logo.png" // Update with actual path
+    id: "demand",
+    number: 1,
+    title: "Demand Infrastructure",
+    cards: [
+      {
+        id: 1,
+        slug: "mt-india",
+        title: "MyTravaly",
+        desc: "A global travel marketplace engineered for seamless discovery, secure payments, and intelligent booking experiences.",
+        logo: "/images/Logo.png", 
+      },
+      {
+        id: 4,
+        slug: "swoovo",
+        title: "Swoovo",
+        desc: "An intelligent supply aggregation engine powering OTAs and travel enterprises with scalable, margin-optimized inventory.",
+        logo: "/images/SwoovoIcon.png", 
+      },
+    ],
   },
   {
-    id: 2,
-    slug: "hbc",
-    title: "HBC",
-    desc: "AI-driven revenue intelligence and business optimization platform for modern hospitality operators.",
-    logo: "images/Logo.png" // Update with actual path
+    id: "operational",
+    number: 2,
+    title: "Operational Intelligence",
+    cards: [
+      {
+        id: 2,
+        slug: "hbc",
+        title: "HBC",
+        desc: "AI-driven revenue intelligence and business optimization platform for modern hospitality operators.",
+        logo: "/images/Logo.png", 
+      },
+      {
+        id: 5,
+        slug: "unified-pms",
+        title: "Unified PMS",
+        desc: "A cloud-native property management system built for operational precision and scalability.",
+        logo: "/images/Logo.png", 
+      },
+    ],
   },
   {
-    id: 3,
-    slug: "stayconfirm",
-    title: "Stayconfirm",
-    desc: "Direct booking technology that transforms hotel websites into high-performance revenue channels.",
-    logo: "images/Logo.png" // Update with actual path
-  },
-  {
-    id: 4,
-    slug: "swoovo",
-    title: "Swoovo",
-    desc: "An intelligent supply aggregation engine powering OTAs and travel enterprises with scalable, margin-optimized inventory.",
-    logo: "images/SwoovoIcon.png" // Update with actual path
-  },
-  {
-    id: 5,
-    slug: "unified-pms",
-    title: "Unified PMS",
-    desc: "A cloud-native property management system built for operational precision and scalability.",
-    logo: "images/Logo.png" // Update with actual path
-  },
-  {
-    id: 6,
-    slug: "mt-global",
-    title: "MT Global",
-    desc: "A monetization infrastructure empowering travel creators and agents to build independent revenue businesses.",
-    logo: "images/Logo.png" // Update with actual path
+    id: "distribution",
+    number: 3,
+    title: "Distribution & Revenue Infrastructure",
+    cards: [
+      {
+        id: 3,
+        slug: "stayconfirm",
+        title: "Stayconfirm",
+        desc: "Direct booking technology that transforms hotel websites into high-performance revenue channels.",
+        logo: "/images/Logo.png", 
+      },
+      {
+        id: 6,
+        slug: "mt-global",
+        title: "MT Global",
+        desc: "A monetization infrastructure empowering travel creators and agents to build independent revenue businesses.",
+        logo: "/images/Logo.png", 
+      },
+    ],
   },
 ];
 
 export default function Ecosystem() {
-  const [start, setStart] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1);
-  const [screenSize, setScreenSize] = useState<"md" | "lg" | "xl">("xl");
-  const [isHovering, setIsHovering] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const total = ecosystemCards.length;
-
-  const visibleMd = 4;
-  const visibleLg = 5;
-  const visibleXl = 6;
-
-  const maxStartMd = Math.max(0, total - visibleMd);
-  const maxStartLg = Math.max(0, total - visibleLg);
-  const maxStartXl = Math.max(0, total - visibleXl);
-
-  // Detect screen size
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1280) {
-        setScreenSize("xl");
-      } else if (window.innerWidth >= 1024) {
-        setScreenSize("lg");
-      } else {
-        setScreenSize("md");
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const getVisible = (count: number) => {
-    if (total <= count) return ecosystemCards;
-    return ecosystemCards.slice(start, start + count);
-  };
-
-  const getMaxStart = () => {
-    switch (screenSize) {
-      case "md":
-        return maxStartMd;
-      case "lg":
-        return maxStartLg;
-      case "xl":
-        return maxStartXl;
-      default:
-        return maxStartXl;
-    }
-  };
-
-  const next = () => {
-    if (start < getMaxStart() && !isTransitioning) {
-      setIsTransitioning(true);
-      setDirection(1);
-      setStart((s) => Math.min(s + 1, getMaxStart()));
-      setTimeout(() => setIsTransitioning(false), 300);
-    }
-  };
-
-  const prev = () => {
-    if (start > 0 && !isTransitioning) {
-      setIsTransitioning(true);
-      setDirection(-1);
-      setStart((s) => Math.max(s - 1, 0));
-      setTimeout(() => setIsTransitioning(false), 300);
-    }
-  };
-
-  // Fixed Hotstar-style animations with proper typing
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants: Variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(4px)",
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      filter: "blur(0px)",
-      transition: {
-        x: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          duration: 0.25,
-        },
-        opacity: {
-          duration: 0.2,
-          ease: "easeOut",
-        },
-        scale: {
-          duration: 0.2,
-          ease: "easeOut",
-        },
-        filter: {
-          duration: 0.2,
-          ease: "easeOut",
-        },
-      },
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -50 : 50,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(4px)",
-      transition: {
-        x: {
-          type: "spring",
-          stiffness: 500,
-          damping: 40,
-          duration: 0.2,
-        },
-        opacity: {
-          duration: 0.15,
-          ease: "easeOut",
-        },
-        scale: {
-          duration: 0.15,
-          ease: "easeOut",
-        },
-        filter: {
-          duration: 0.15,
-          ease: "easeOut",
-        },
-      },
-    }),
-  };
+  const router = useRouter();
 
   return (
-    <section className="pb-10 py-8 w-full bg-[#F7F5F0] px-4 md:px-20 overflow-hidden">
-      {/* Header */}
-      <div className="max-w-7xl mx-auto flex items-start justify-between gap-4 mb-8">
+    <section className="py-8 w-full bg-[#F7F5F0] px-4 md:px-12 lg:px-20 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* ================= GENERAL INTRO HEADER ================= */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
+          className="mb-12 md:mb-20 max-w-4xl"
         >
-          <h2 className="text-2xl md:text-3xl font-normal text-black">
-            All of Travel, Covered
+          <h2 className="text-3xl md:text-4xl lg:text-[40px] font-medium text-gray-900 leading-tight mb-6">
+            One Platform. Multiple Growth Engines.
           </h2>
-          <p className="text-sm md:text-base text-black/60">
-            Our ecosystem. One unified dashboard. Infinite growth potential.
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed md:leading-loose">
+            MyTravaly is not a booking company. It is a vertically integrated travel technology ecosystem — connecting demand, operations, distribution, and revenue intelligence into one unified global infrastructure. One architecture. Multiple growth engines. Compounding network effects.
           </p>
         </motion.div>
 
-        {/* Desktop arrows with Hotstar-style hover effects */}
-        <motion.div
-          className="hidden md:flex items-center gap-3"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <motion.button
-            onClick={prev}
-            disabled={start === 0 || isTransitioning}
-            whileHover={
-              start !== 0 && !isTransitioning
-                ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" }
-                : {}
-            }
-            whileTap={start !== 0 && !isTransitioning ? { scale: 0.95 } : {}}
-            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
-              start === 0 || isTransitioning
-                ? "border-gray-300 text-gray-300 cursor-not-allowed"
-                : "border-[#B08D57] text-[#B08D57] hover:shadow-lg"
-            }`}
-          >
-            <FaChevronLeft className="text-sm" />
-          </motion.button>
+        {/* ================= MOBILE LAYOUT (Vertical Flow, Side-by-Side Cards) ================= */}
+        <div className="md:hidden flex flex-col gap-10">
+          {ecosystemPillars.map((pillar, pIdx) => (
+            <motion.div 
+              key={pillar.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: pIdx * 0.1 }}
+              className="flex flex-col gap-4"
+            >
+              {/* Pillar Title */}
+              <h3 className="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">
+                {pillar.title}
+              </h3>
 
-          <motion.button
-            onClick={next}
-            disabled={start >= getMaxStart() || isTransitioning}
-            whileHover={
-              start < getMaxStart() && !isTransitioning
-                ? { scale: 1.1, backgroundColor: "#B08D57", color: "#ffffff" }
-                : {}
-            }
-            whileTap={
-              start < getMaxStart() && !isTransitioning ? { scale: 0.95 } : {}
-            }
-            className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-150 ${
-              start >= getMaxStart() || isTransitioning
-                ? "border-gray-300 text-gray-300 cursor-not-allowed"
-                : "border-[#B08D57] text-[#B08D57] hover:shadow-lg"
-            }`}
-          >
-            <FaChevronRight className="text-sm" />
-          </motion.button>
-        </motion.div>
-      </div>
+              {/* Mobile Cards (Side by side Logo & Content) */}
+              <div className="flex flex-col gap-4">
+                {pillar.cards.map((card) => (
+                  <div
+                    key={card.id}
+                    onClick={() => window.open(`/products/${card.slug}`, "_blank")}
+                    className="bg-white rounded-2xl p-4 shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-gray-100 flex gap-4 items-center cursor-pointer active:scale-[0.98] transition-transform"
+                  >
+                    {/* Left: Large Expanded Logo */}
+                    <div className={`w-24 h-24 rounded-2xl flex-shrink-0 flex items-center justify-center p-4 ${card.slug === 'mt-india' || card.slug === 'hbc' || card.slug === 'unified-pms' || card.slug === 'stayconfirm' || card.slug === 'mt-global' ? 'bg-[#FF6B5B]' : 'bg-gray-50 border border-gray-100'}`}>
+                      <div className="relative w-full h-full">
+                        {card.slug !== 'swoovo' ? (
+                           <span className="text-white font-bold text-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">MT</span>
+                        ) : (
+                          <Image
+                            src={card.logo}
+                            alt={`${card.title} logo`}
+                            fill
+                            className="object-contain"
+                          />
+                        )}
+                      </div>
+                    </div>
 
-      {/* Mobile */}
-      <div className="md:hidden">
-        <SwiperCards />
-      </div>
-
-      {/* Desktop Grid with Hotstar-style animations */}
-      <div
-        className="hidden md:block relative"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-      >
-        {/* md */}
-        <div className="hidden md:block lg:hidden overflow-visible">
-          <motion.div
-            className="grid grid-cols-4 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {getVisible(visibleMd).map((item, index) => (
-                <motion.div
-                  key={`${item.id}-${start}-${index}`}
-                  custom={direction}
-                  variants={cardVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  layout
-                  className="relative"
-                >
-                  <Card item={item} index={index} isHovering={isHovering} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+                    {/* Right: Content */}
+                    <div className="flex flex-col flex-grow">
+                      <h4 className="text-base font-bold text-gray-900 mb-1">{card.title}</h4>
+                      <p className="text-xs text-gray-500 line-clamp-3 leading-relaxed mb-2">
+                        {card.desc}
+                      </p>
+                      <span className="text-xs font-semibold text-[#B08D57]">
+                        Learn more &gt;
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* lg */}
-        <div className="hidden lg:block xl:hidden overflow-visible">
-          <motion.div
-            className="grid grid-cols-5 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {getVisible(visibleLg).map((item, index) => (
-                <motion.div
-                  key={`${item.id}-${start}-${index}`}
-                  custom={direction}
-                  variants={cardVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  layout
-                  className="relative"
-                >
-                  <Card item={item} index={index} isHovering={isHovering} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+        {/* ================= DESKTOP LAYOUT (Numbered Pillars, Grid Cards) ================= */}
+        <div className="hidden md:flex flex-col relative z-10">
+          {ecosystemPillars.map((pillar, index) => (
+            <motion.div 
+              key={pillar.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              // mb-12 creates a 3rem (48px) gap between the rows
+              className="flex items-stretch mb-12 last:mb-0 relative"
+            >
+              {/* Left Side: Number & Pillar Title */}
+              {/* REMOVED pl-4 lg:pl-12 */}
+              <div className="w-1/2 lg:w-1/3 flex items-center justify-start pr-6 relative z-10">
+                
+                {/* 🌟 ADJUSTED CONNECTING LINE 🌟 */}
+                {/* MATH: 0 padding + Circle Radius (36px) = 36px. left-[36px]. */}
+                {index !== ecosystemPillars.length - 1 && (
+                  <div 
+                    className="absolute top-1/2 w-4 bg-[#EBE2D2] -z-10 -translate-x-1/2 left-[36px]" 
+                    style={{ height: 'calc(100% + 3rem)' }}
+                  />
+                )}
+
+                {/* Number Circle */}
+                <div className="w-[72px] h-[72px] rounded-full bg-[#B08D57] flex items-center justify-center text-white text-2xl font-semibold shrink-0 z-10 shadow-md">
+                  {pillar.number}
+                </div>
+                
+                {/* Pillar Title */}
+                <h3 className="text-2xl lg:text-[26px] font-semibold text-gray-900 leading-tight ml-5 lg:ml-6">
+                  {pillar.title}
+                </h3>
+              </div>
+
+              {/* Right Side: 2 Cards Side-by-Side */}
+              <div className="w-1/2 lg:w-2/3 grid grid-cols-1 lg:grid-cols-2 gap-6 relative z-10">
+                {pillar.cards.map((card) => (
+                  <div
+                    key={card.id}
+                    onClick={() => window.open(`/products/${card.slug}`, "_blank")}
+                    className="bg-[#F6EFE5] rounded-[32px] p-8 flex flex-col h-full cursor-pointer hover:-translate-y-2 transition-transform duration-300 hover:shadow-xl border border-[#EBE2D2]"
+                  >
+                    {/* Top: Logo & Title Row */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${card.slug !== 'swoovo' ? 'bg-[#FF6B5B]' : 'bg-white'}`}>
+                        {card.slug !== 'swoovo' ? (
+                          <span className="text-white font-bold text-2xl">MT</span>
+                        ) : (
+                          <div className="relative w-12 h-12">
+                            <Image src={card.logo} alt="Logo" fill className="object-contain" />
+                          </div>
+                        )}
+                      </div>
+                      <h4 className="text-[22px] font-medium text-gray-900">
+                        {card.title}
+                      </h4>
+                    </div>
+
+                    {/* Middle: Description */}
+                    <p className="text-[15px] text-gray-700 leading-relaxed mb-8 flex-grow">
+                      {card.desc}
+                    </p>
+
+                    {/* Bottom: Link */}
+                    <div className="text-sm font-semibold text-gray-900 underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900 transition-colors mt-auto">
+                      Learn more &gt;
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
 
-        {/* xl */}
-        <div className="hidden xl:block overflow-visible">
-          <motion.div
-            className="grid grid-cols-6 gap-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {getVisible(visibleXl).map((item, index) => (
-                <motion.div
-                  key={`${item.id}-${start}-${index}`}
-                  custom={direction}
-                  variants={cardVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  layout
-                  className="relative"
-                >
-                  <Card item={item} index={index} isHovering={isHovering} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
       </div>
     </section>
-  );
-}
-
-function Card({
-  item,
-  index,
-  isHovering,
-}: {
-  item: { id: number; slug: string; title: string; desc: string; logo: string };
-  index: number;
-  isHovering: boolean;
-}) {
-  const router = useRouter();
-  const [isCardHovered, setIsCardHovered] = useState(false);
-
-  return (
-    <motion.div
-      onHoverStart={() => setIsCardHovered(true)}
-      onHoverEnd={() => setIsCardHovered(false)}
-      whileHover={{
-        y: -8,
-        scale: 1.02,
-        transition: { duration: 0.15 },
-      }}
-      className="bg-white rounded-2xl shadow-md p-5 flex flex-col justify-between h-[450px] relative overflow-hidden group cursor-pointer"
-    >
-      {/* Hotstar-style hover overlay */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-[#B08D57]/20 to-transparent pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isCardHovered ? 1 : 0 }}
-        transition={{ duration: 0.15 }}
-      />
-
-      {/* Logo with animation */}
-      <motion.div
-        onClick={() => window.open(`/products/${item.slug}`, "_blank")}
-        className="w-full rounded-xl bg-white flex items-center justify-center relative overflow-hidden cursor-pointer aspect-square border border-gray-100"
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src={item.logo}
-            alt={`${item.title} logo`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        </div>
-
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B08D57]/10 to-transparent"
-          initial={{ x: "-100%" }}
-          animate={{ x: isCardHovered ? "100%" : "-100%" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-        />
-      </motion.div>
-
-      {/* Content */}
-      <motion.div
-        className="mt-4 text-center min-h-[96px]"
-        animate={{ y: isCardHovered ? -2 : 0 }}
-        transition={{ duration: 0.15 }}
-      >
-        <h3 className="text-xl font-medium text-black">{item.title}</h3>
-        <motion.p
-          className="text-sm text-black/60 mt-2 line-clamp-5"
-          animate={{ scale: isCardHovered ? 1.01 : 1 }}
-          transition={{ duration: 0.15 }}
-        >
-          {item.desc}
-        </motion.p>
-      </motion.div>
-
-      {/* Learn more with animation */}
-      <motion.span
-        onClick={() => window.open(`/products/${item.slug}`, "_blank")}
-        className="mt-4 text-sm text-[#B08D57] font-medium text-center relative inline-block cursor-pointer"
-        animate={{ x: isCardHovered ? 3 : 0 }}
-        transition={{ duration: 0.15 }}
-      >
-        Learn more
-        <motion.span
-          animate={{ x: isCardHovered ? 2 : 0 }}
-          transition={{ duration: 0.15 }}
-          className="inline-block ml-1"
-        >
-          →
-        </motion.span>
-      </motion.span>
-
-      {/* Index number (Hotstar style) */}
-      <motion.div
-        className="absolute top-2 left-2 text-4xl font-bold text-[#B08D57]/10"
-        animate={{
-          scale: isCardHovered ? 1.1 : 1,
-          opacity: isCardHovered ? 0.15 : 0.1,
-        }}
-        transition={{ duration: 0.15 }}
-      >
-        {String(index + 1).padStart(2, "0")}
-      </motion.div>
-    </motion.div>
   );
 }

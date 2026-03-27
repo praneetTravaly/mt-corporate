@@ -12,127 +12,80 @@ export default function Ceo() {
   }, []);
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-50 py-8 md:py-10 px-4 md:px-20 relative overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 opacity-30">
+    <section className="w-full bg-black py-16 md:py-24 px-4 md:px-20 relative overflow-hidden">
+      {/* Subtle animated background pattern (kept for depth, but made very dark) */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]">
           <div
             className="absolute inset-0 bg-[#B08D57]/5 rounded-full animate-pulse"
             style={{ animationDuration: "8s" }}
           />
-          <div
-            className="absolute inset-0 bg-[#B08D57]/5 rounded-full animate-pulse delay-1000"
-            style={{ animationDuration: "12s" }}
-          />
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative">
-        {/* Quote container with elegant styling */}
+      <div className="max-w-4xl mx-auto relative z-10">
+        {/* Quote container */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative rounded-3xl px-4"
+          className="relative px-6 md:px-12 text-center"
         >
-          {/* Quote content */}
-          <div className="relative">
+          {/* Quote text wrapper */}
+          <div className="relative inline-block">
             {/* Opening quote */}
-            <motion.div
+            <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="absolute -top-1 -left-4 lg:left-1 text-8xl text-[#B08D57]"
+              className="absolute -top-4 -left-6 md:-left-12 text-5xl md:text-7xl font-serif text-[#B08D57]"
             >
-              "
-            </motion.div>
+              “
+            </motion.span>
 
-            {/* Quote text */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isVisible ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-3xl md:text-5xl lg:text-5xl font-normal leading-relaxed text-gray-800 text-center px-8 md:px-12"
-            >
-              <h3 className="relative">
-                We didn’t set out to build a product.{" "}
-                <span className="text-[#B08D57] font-semibold">
-                  We built the infrastructure{" "}
-                </span>
-                travel could depend on
-              </h3>
-            </motion.div>
+            <h3 className="text-2xl md:text-4xl lg:text-[42px] font-medium leading-snug md:leading-tight text-[#B08D57]">
+              We didn’t set out to build a product. We built the infrastructure travel could depend on.
+            </h3>
 
             {/* Closing quote */}
-            <motion.div
+            <motion.span
               initial={{ opacity: 0, x: 20 }}
               animate={isVisible ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="absolute -bottom-11 md:-bottom-6 lg:-bottom-10 -right-4 text-8xl text-[#B08D57]"
+              className="absolute -bottom-8 md:-bottom-12 -right-4 md:-right-10 text-5xl md:text-7xl font-serif text-[#B08D57]"
             >
-              "
-            </motion.div>
+              ”
+            </motion.span>
           </div>
-
-          {/* Animated underline */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={isVisible ? { scaleX: 1 } : {}}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="w-32 h-0.5 bg-gradient-to-r from-transparent via-[#B08D57] to-transparent mx-auto mt-8"
-          />
         </motion.div>
 
-        {/* CEO Profile */}
+        {/* CEO Profile - Row Layout */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 1, duration: 0.6 }}
-          className="mt-12 flex flex-col items-center"
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="mt-16 flex flex-row items-center justify-center gap-4 md:gap-5"
         >
-          {/* Avatar with ring animation */}
-          <div className="relative mb-4">
-            <motion.div
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 bg-[#B08D57] rounded-full blur-lg"
+          {/* Avatar (Removed the white ring to match the image) */}
+          <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-gray-300 shrink-0">
+            <Image
+              src="/images/Ceo.png"
+              alt="Hamlet Roy, Founder & CEO"
+              fill
+              className="object-cover"
+              priority
             />
-            <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
-              <div className="w-full h-full bg-gradient-to-br from-[#B08D57] to-[#8B6F45] flex items-center justify-center">
-                <Image
-                  src="/images/Ceo.png"
-                  alt="Hotel interior"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  priority
-                />
-              </div>
-            </div>
           </div>
 
-          {/* Name and title */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isVisible ? { opacity: 1 } : {}}
-            transition={{ delay: 1.2, duration: 0.6 }}
-            className="text-center"
-          >
-            <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-1">
+          {/* Name and title stacked side-by-side with avatar */}
+          <div className="flex flex-col text-left">
+            <h3 className="text-xl md:text-[22px] font-medium text-white tracking-wide">
               Hamlet Roy
             </h3>
-            <p className="text-sm md:text-base text-gray-500 flex items-center gap-2">
-              <span className="w-8 h-px bg-gray-300" />
+            <p className="text-sm md:text-base text-gray-400 mt-0.5">
               Founder & CEO
-              <span className="w-8 h-px bg-gray-300" />
             </p>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

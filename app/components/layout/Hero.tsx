@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const Hero: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,10 +36,10 @@ const Hero: React.FC = () => {
         behavior: 'smooth'
       });
       
-      // Remove highlight after scrolling completes (approximate duration)
+      // Remove highlight after scrolling completes
       setTimeout(() => {
         setActiveNav(null);
-      }, 1000); // Match this with your scroll duration
+      }, 1000); 
     }
     setIsMenuOpen(false);
   };
@@ -46,7 +47,7 @@ const Hero: React.FC = () => {
   return (
     <div className="bg-[#F7F5F0] relative px-4 md:px-8 lg:px-12 pt-10 md:pt-14 lg:min-h-screen">
       <div className="max-w-8xl mx-auto relative h-full">
-        {/* Floating Navigation - Half inside, half outside */}
+        {/* Floating Navigation */}
         <motion.nav
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -56,7 +57,7 @@ const Hero: React.FC = () => {
           }`}
         >
           <div className="flex items-center justify-between">
-            {/* Logo - scrolls to top when clicked */}
+            {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
@@ -90,7 +91,6 @@ const Hero: React.FC = () => {
                   }`}
                 >
                   {item.label}
-                  {/* Active indicator - underline */}
                   {activeNav === item.sectionId && (
                     <motion.div
                       layoutId="activeNav"
@@ -104,7 +104,7 @@ const Hero: React.FC = () => {
               ))}
             </div>
 
-            {/* Mobile Menu Button - Hamburger Icon */}
+            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.1 }}
@@ -154,15 +154,26 @@ const Hero: React.FC = () => {
           )}
         </motion.nav>
 
-        {/* Main Content Section with rounded corners */}
+        {/* Main Content Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-[#F1E9DB] h-full rounded-4xl md:rounded-[48px] relative overflow-hidden border-2 border-[#B08D57] mt-2"
+          className="bg-[#1C1C1C] h-full rounded-4xl md:rounded-[48px] relative overflow-hidden border-2 border-[#B08D57] mt-2"
         >
+          {/* ================= BACKGROUND SVG ================= */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-full z-0 pointer-events-none">
+            <Image
+              src="/icons/hero.svg"
+              alt="Hero Background"
+              fill
+              className="object-contain opacity-30 mix-blend-overlay"
+              priority
+            />
+          </div>
+
           {/* Hero Content Container */}
-          <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32 xl:py-28 lg:h-[85vh]">
+          <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16 py-24 md:py-32 xl:py-28 lg:h-[85vh] relative z-10">
             <div className="flex flex-col items-center justify-center text-center h-full">
               {/* Text Content */}
               <div className="max-w-4xl">
@@ -170,18 +181,38 @@ const Hero: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-                  className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#1A1A1A] leading-[1.1] mb-6 md:mb-8"
+                  className="text-3xl md:text-5xl lg:text-5xl xl:text-6xl font-medium text-[#B08D57] leading-[1.1] mb-6 md:mb-8"
                 >
                   The Infrastructure Powering Modern Travel
                 </motion.h1>
+                
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
-                  className="text-sm md:text-lg lg:text-xl text-[#5C5449] leading-relaxed max-w-3xl mx-auto"
+                  className="text-sm md:text-lg lg:text-xl text-[#B08D57] leading-relaxed max-w-3xl mx-auto"
                 >
                   A unified global platform connecting travelers, hospitality leaders, and the creator economy — designed to scale across markets.
                 </motion.p>
+
+                {/* ================= BUTTONS ================= */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8, ease: "easeOut" }}
+                  className="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6"
+                >
+                  {/* Hollow Button */}
+                  <button className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-[#B08D57] text-[#B08D57] text-base font-medium hover:bg-[#B08D57]/10 transition-colors duration-300">
+                    Explore Ecosystem
+                  </button>
+                  
+                  {/* Filled Button */}
+                  <button className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#B08D57] text-[#1C1C1C] text-base font-medium hover:bg-[#c49d60] transition-colors duration-300">
+                    View Investor Overview
+                  </button>
+                </motion.div>
+                
               </div>
             </div>
           </div>

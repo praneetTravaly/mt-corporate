@@ -69,7 +69,7 @@ export default function Standby() {
             initial={{ opacity: 0, y: 30 }}
             animate={centerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="bg-[#F7F5F0] border border-[#B08D57]/40 rounded-3xl p-6 md:p-8 space-y-6 h-full flex flex-col justify-center"
+            className="bg-[#F7F5F0] border-3 border-[#B08D57] rounded-3xl p-6 md:p-8 space-y-6 h-full flex flex-col justify-center bg-black/70"
           >
             <ContentBlock title="Premium Partners" index={0} />
             <ContentBlock title="Verified Stays" index={1} />
@@ -139,9 +139,9 @@ function ContentBlock({ title, index }: { title: string; index: number }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.15 }}
       whileHover={{ x: 5 }}
-      className="group cursor-pointer"
+      className="group cursor-pointer "
     >
-      <h3 className="text-base md:text-xl font-normal text-black flex items-center">
+      <h3 className="text-base md:text-xl font-medium text-[#B08D57] flex items-center">
         {title}
         {/* Small indicator dot */}
         <motion.span 
@@ -151,14 +151,14 @@ function ContentBlock({ title, index }: { title: string; index: number }) {
         />
       </h3>
       
-      <p className="text-sm text-black/60 mt-2">
+      <p className="text-sm text-white font-light mt-2">
         Our premium partners represent a carefully selected group of hotels
         recognised for strong operational practices, consistent service
         standards, and aligned brand values.
       </p>
       
       <motion.span 
-        className="mt-2 inline-flex items-center text-sm text-[#B08D57] font-medium group-hover:gap-2 transition-all duration-300"
+        className="mt-2 inline-flex items-center text-sm text-white font-medium group-hover:gap-2 transition-all duration-300"
         whileHover={{ x: 5 }}
       >
         Learn more
@@ -230,18 +230,18 @@ function MobileBlock({
       )}
 
       <motion.div 
-        className="flex-1 border border-[#B08D57]/40 rounded-3xl p-4 mx-4"
+        className="flex-1 border-3 border-[#B08D57] rounded-3xl p-4 mx-4 bg-black/70"
         whileHover={{ scale: 1.02 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        <h3 className="text-lg font-normal text-black">{title}</h3>
-        <p className="text-sm text-black/60 mt-2 line-clamp-4">
+        <h3 className="text-lg font-medium text-[#B08D57]">{title}</h3>
+        <p className="text-sm text-white mt-2 line-clamp-4">
           Our premium partners represent a carefully selected group of hotels
           recognised for strong operational practices, consistent service
           standards, and aligned brand values.
         </p>
         <motion.span 
-          className="mt-2 inline-flex items-center text-sm text-[#B08D57] font-medium"
+          className="mt-2 inline-flex items-center text-sm text-white font-medium"
           whileHover={{ x: 5 }}
         >
           Learn more →
